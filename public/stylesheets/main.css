@@ -1,33 +1,34 @@
 @media screen {
   /* --- Reset Styles --- */
-  * {
-    list-style: none;
+  /** {
+    list-style: circle;
     margin: 0;
     padding: 0;
-  }
+  }*/
 
   html, body {
     height: 100%;
     width: 100%;
+    font-family: montserrat, arial, verdana;
   }
 
   /* --- Welcome Page Styles --- */
   body {
-    background-color: lightblue;
-    color: #333;
-    font-family: Sans-Serif;
-    line-height: 18px;
+    background: linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));
   }
 
   .wrapper {
-    background: #fff;
-    -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);
-    -webkit-box-shadow: 0 0 10px rgba(0,0,0,.3);
-    box-shadow: 0 0 10px rgba(0,0,0,.3);
-    margin: 16px auto;
-    max-width: 960px;
-    padding: 2.25%; /* 18px / 800px */
-    width: 85%;
+    max-width: 1000px;
+  margin: 50px auto;
+  text-align: center;
+  position: relative;
+  background: white;
+  border: 0 none;
+  border-radius: 3px;
+  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+  padding: 20px 30px;
+  box-sizing: border-box;
+  position: relative;
   }
 
   h1 {
@@ -37,18 +38,22 @@
 
   h2 {
     border-bottom: 2px solid #ccc;
-    font-size: 24px;
-    line-height: 36px;
+    font-size: 22px;
+    line-height: 32px;
     margin-bottom: 16px;
   }
 
   h3 {
     font-size: 18px;
-    line-height: 36px;
+    line-height: 24px;
   }
 
   p {
     margin-bottom: 18px;
+  }
+
+  div {
+    padding: 20px;
   }
 
   .main {
@@ -77,12 +82,46 @@
   }
 
   footer.branding {
-    border-top: 2px solid #ccc;
-    margin-top: 20px;
-    padding-top: 20px;
+    width:400px;
+    margin:0 auto;
+    text-align: center;
   }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+  padding: 0;
+  display: inline-block;
+        text-align:left;
+
+  }
+
+  li {
+  background: #fff;
+  color: #666;
+  height: 40px;
+  line-height: 40px; /*Aligns the text center horizontally*/
 }
 
+/*Gives every other li this color*/
+li:nth-child(2n) {
+  background: #f7f7f7;
+}
+
+
+
+  a {
+    transition: color .4s;
+    color:#000;
+  }
+
+  a:link,
+a:visited { color: #000; }
+a:hover   { color: #a9a9a9; }
+a:active  {
+  transition: color .3s;
+  color: #a9a9a9;
+}
 @media screen and (max-width: 600px) {
   .wrapper {
     -moz-box-shadow: none;
@@ -104,7 +143,7 @@
   }
 
   h1 {
-    font-size: 24px;
+    font-size: 22px;
     line-height: 36px;
   }
 
@@ -112,4 +151,94 @@
     font-size: 18px;
     line-height: 24px;
   }
+}
+
+  /* --- Signup/Login Page Styles --- */
+.signup, .login {
+  border: solid;
+  width: 33%;
+  padding: 2em;
+}
+
+.warning {
+  color: red;
+}
+
+  /* --- Table Styles --- */
+
+table {
+  margin: 0 0 20px;
+
+  
+}
+
+table, th, td {
+  padding: 10px;
+ 
+  
+}
+
+table tr:nth-child(odd) {
+  background-color: #f7f7f7;
+}
+ 
+
+table td {
+  
+}
+
+@media screen and (max-width: 800px) {
+  tr { 
+    display: flex; 
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0.5em 0;
+    border: 1px solid rgba(3,3,3,0.2);
+  }
+  td, th {
+    flex: 150px;
+    border: 0.5px solid rgba(3,3,3,0.2);
+  }
+
+
+
+* { box-model: border-box; }
+  }
+
+  /* --- Button /input Styles --- */
+form {
+  display: inline-block;
+}
+
+.big_button {
+   min-width: 100px;
+  background: #27AE60;
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 1px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+}
+
+.big_button:hover,
+.big_button:focus {
+  box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+}
+
+  /* --- Fixes --- */
+
+/*.clearfix::after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  height: 0;
+  line-height: 0;
+}*/
+
+.clearfix::after {
+    content: "";
+    clear: both;
 }
