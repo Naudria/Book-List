@@ -59,7 +59,7 @@ class UsersController < ApplicationController
       flash[:message] = "Please sign up or login first."
       redirect to "/"
     end
-
+  end
   
 
 end

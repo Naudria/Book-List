@@ -8,7 +8,7 @@
 	<h4>Genre: <%= @book.genre %></h4>
 
 	<form action="/books" method="get">
-  <input class="big_button" type="submit" value="View Your List">
+  <input class="big_button" type="submit" value="View List">
 </form>
 
     <form method="post" action="/books/<%=@book.id%>/delete">
