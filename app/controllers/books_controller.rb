@@ -34,4 +34,29 @@ class BooksController < ApplicationController
     end
   end
 
+   #CREATE ACTION - Use incoming form info to create new book
+  post '/books' do
+    if logged_in? 
+      @book = current_user.books.create(title: params[:title], author: params[:author], genre: params[:genre], user_id: params[:user_id])
+      redirect "/books"
+      flash[:message] = "Book has been added."
+    else
+      erb '/books/create'
+      flash[:message] = "When creating a new book, please provide both a title and an author."
+    end
+  end
+
+  
+  get '/books/:id/edit' do
+    if logged_in?
+       @book = Book.find(params[:id])
+      if current_user.id == @book.user_id
+      erb :"books/edit"
+    else
+      flash[:message] = "You are not authorized to edit this Book."
+      redirect to '/login'
+     end
+    end
+  end
+
 end
