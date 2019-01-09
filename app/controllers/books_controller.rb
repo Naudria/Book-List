@@ -72,4 +72,20 @@ class BooksController < ApplicationController
     end
   end
 
+  delete '/books/:id/delete' do
+    if logged_in?
+      @book = Book.find(params[:id])
+      if current_user.id == @book.user_id
+      @book.delete
+      flash[:message] = "Book successfully removed!"
+      redirect to '/books'
+      else
+      flash[:message] = "You are not authorized to delete this Book."
+      redirect to '/login'
+
+      end
+    end
+  end
+
+
 end
