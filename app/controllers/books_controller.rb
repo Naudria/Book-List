@@ -59,4 +59,17 @@ class BooksController < ApplicationController
     end
   end
 
+  patch '/books/:id' do
+    if logged_in?
+        @book = Book.find(params[:id])
+        
+        @book.update(title: params[:title], author: params[:author], genre: params[:genre])
+        flash[:message] = "Your Book Has Been Succesfully Updated"
+        redirect to '/books'
+      else
+        redirect to "/books/#{@book.id}/edit"
+      
+    end
+  end
+
 end
