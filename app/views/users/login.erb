@@ -1,0 +1,20 @@
+<% if flash[:message] %>
+  <%= flash[:message] %>
+<% end %>
+
+<h1>Welcome to My Favorite Books!</h1>
+
+<h2>Existing User Login</h2>
+
+<form action="/login" method="post">
+    <label>Username: </label> <input type="text" name="username" value="username" required="required">
+    <label>Password: </label><input type="password" name="password" value="password" required="required">
+      <input class="big_button" type="submit" name="login" value="Log In">
+  </form>
+
+
+<h3>Not an existing user?</h3> 
+<h2>Please Sign up: </h2>
+<form  action="/signup" method="get">
+  <input class="big_button" type="submit" value="Signup">
+</form>
