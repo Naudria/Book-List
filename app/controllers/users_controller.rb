@@ -29,6 +29,37 @@ class UsersController < ApplicationController
     end
   end
 
+  get '/login' do
+    if logged_in?
+      redirect "/books"
+    else
+      erb :'users/login'
+    end
+  end
+
+  post '/login' do
+    user = User.find_by(username: params[:username])
+    if user && user.authenticate(params[:password])
+      session[:user_id] = user.id
+      redirect to "/books"
+    else
+      flash[:message] = "Incorrect login."
+      redirect to "/login"
+    end
+  end
+
+  get '/logout' do
+    session.clear
+    redirect '/login'
+  end
+
+  private
+  def authenticate_user!
+    if !logged_in?
+      flash[:message] = "Please sign up or login first."
+      redirect to "/"
+    end
+
   
 
 end
