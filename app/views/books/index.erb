@@ -1,0 +1,20 @@
+<% if flash[:message] %>
+  <%= flash[:message] %>
+<% end %>
+
+ <h1>Welcome <%=current_user.username %>!</h1>
+<h2>Book Index:</h2>
+ <ul>
+  <%@books.each do |book| %>
+    <li><a href="/books/<%=book.id%>"><%=book.title%></a> by <%=book.author%></li>
+  <%end%>
+</ul>
+<div>
+    <form  action="/books/new" method="get">
+    <input class="big_button" type="submit" value="Add Book">
+  </form>
+
+  <form  action="/logout" method="get">
+  <input class="big_button" type="submit" value="Log Out">
+</form>
+</div>
