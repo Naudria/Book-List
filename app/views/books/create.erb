@@ -1,0 +1,11 @@
+<% if flash[:message] %>
+  <%= flash[:message] %>
+<% end %>
+<h2>Add a Book to the List!</h2>
+<form method="post" action="/books">
+<input type="text" name="title" placeholder="book title">
+<input type="text" name="author" placeholder="book author">
+<input type="text" name="genre" placeholder="book genre">
+<!-- Name attribute becomes the key in the params hash -->
+<input class="big_button" type="submit" name="" value="Create">
+</form>
