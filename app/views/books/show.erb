@@ -1,0 +1,20 @@
+<% if flash[:message] %>
+  <%= flash[:message] %>
+<% end %>
+
+<h2> <%= @book.title%></h2>
+
+	<h4>Author: <%= @book.author %></h4>
+	<h4>Genre: <%= @book.genre %></h4>
+
+	<form action="/books" method="get">
+  <input class="big_button" type="submit" value="View Your List">
+</form>
+
+    <form method="post" action="/books/<%=@book.id%>/delete">
+      <input id="hidden" type="hidden" name="_method" value="DELETE">
+      <button type="submit" class="big_button" >Delete Book</button>
+    </form>
+     <form method="get" action="/books/<%=@book.id%>/edit">
+      <button type="submit" class="big_button" >Edit Book</button>
+    </form>
