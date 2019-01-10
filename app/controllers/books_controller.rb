@@ -36,13 +36,15 @@ class BooksController < ApplicationController
 
    #CREATE ACTION - Use incoming form info to create new book
   post '/books' do
-    if logged_in? 
+    if logged_in? && !params[:title].empty? || !params[:author].empty?
       @book = current_user.books.create(title: params[:title], author: params[:author], genre: params[:genre], user_id: params[:user_id])
+       flash[:message] = "Book has been added."
       redirect "/books"
-      flash[:message] = "Book has been added."
+     
     else
-      erb '/books/create'
-      flash[:message] = "When creating a new book, please provide both a title and an author."
+          flash[:message] = "When creating a new book, please provide both a title and an author."
+      redirect '/books'
+  
     end
   end
 
