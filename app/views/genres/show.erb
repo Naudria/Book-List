@@ -1,0 +1,6 @@
+<h1>Books in the '<%=@genre.name%>' Category</h1>
+<ul>
+  <%@genre.books.each do |book|%>
+    <li> <a href="/books/<%=book.id%>"><%=book.title%></a> by <%=book.author%></li>
+  <%end%>
+</ul>
