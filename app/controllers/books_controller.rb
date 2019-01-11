@@ -15,6 +15,8 @@ class BooksController < ApplicationController
   #NEW ROUTE - RENDER THE FORM
   get '/books/new' do
     if logged_in?
+      @genres = Genre.all
+      @books = Book.all
       erb :'books/create'
     else
       redirect to '/login'
@@ -36,13 +38,13 @@ class BooksController < ApplicationController
 
    #CREATE ACTION - Use incoming form info to create new book
   post '/books' do
-    if logged_in? && !params[:title].empty? || !params[:author].empty?
-      @book = current_user.books.create(title: params[:title], author: params[:author], genre: params[:genre], user_id: params[:user_id])
+    if logged_in? && !params[:title].empty? && !params[:author].empty? && !params[:genre_id].nil?
+      @book = current_user.books.create(title: params[:title], author: params[:author], genre_id: params[:genre_id], user_id: params[:user_id])
        flash[:message] = "Book has been added."
       redirect "/books"
      
     else
-          flash[:message] = "When creating a new book, please provide both a title and an author."
+          flash[:message] = "When creating a new book, please provide a title, author and genre."
       redirect '/books'
   
     end
@@ -51,6 +53,7 @@ class BooksController < ApplicationController
   
   get '/books/:id/edit' do
     if logged_in?
+      @genres = Genre.all
        @book = Book.find(params[:id])
       if current_user.id == @book.user_id
       erb :"books/edit"
@@ -62,15 +65,16 @@ class BooksController < ApplicationController
   end
 
   patch '/books/:id' do
-    if logged_in?
+    if logged_in? 
         @book = Book.find(params[:id])
-        
-        @book.update(title: params[:title], author: params[:author], genre: params[:genre])
+        if !params[:title].empty? && !params[:author].empty? && !params[:genre_id].nil?
+        @book.update(title: params[:title], author: params[:author], genre_id: params[:genre_id])
         flash[:message] = "Your Book Has Been Succesfully Updated"
         redirect to '/books'
-      else
-        redirect to "/books/#{@book.id}/edit"
-      
+        else
+         flash[:message] = "Please fill in all the criteria." 
+         redirect to "/books/#{@book.id}/edit"
+      end
     end
   end
 

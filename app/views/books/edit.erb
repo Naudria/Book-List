@@ -3,11 +3,16 @@
 <% end %>
 
 <h1>Edit the Book Info</h1>
-<form method="post" action="/books/<%= @book.id %>"> <!-- Use erb tags to interpolate a book id -->
-<input id="hidden" type="hidden" name="_method" value="patch"> <!-- Can't use patch in the form method in rack-based app; must create a hidden input to change the http method from post to patch; this takes effect when Rack::MethodOverride is added to config.ru -->
-<input type="text" name="title" value="<%= @book.title %>" placeholder="Edit title">
-<input type="text" name="author" value="<%= @book.author %>" placeholder="Edit author">
-<input type="text" name="genre" value="<%= @book.genre %>" placeholder="Edit genre">
 
-<input class="big_button" type="submit" name="edit" value="Edit">
+
+<form method="post" action="/books/<%= @book.id %>"> <!-- Use erb tags to interpolate a book id -->
+	<input id="hidden" type="hidden" name="_method" value="patch"> <!-- Can't use patch in the form method in rack-based app; must create a hidden input to change the http method from post to patch; this takes effect when Rack::MethodOverride is added to config.ru -->
+    <p><label for="title">Book Title:</label> <input id="title" type="text" name="title" value="<%= @book.title %>"></p>
+  <p><label for="title">Book Author:</label> <input id="title" type="text" name="author" value="<%= @book.author %>"></p>
+  <p><label for="genre">Genre:</label>
+    <%@genres.each do |genre|%>
+    <input type="checkbox" name="genre_id" value="<%=genre.id%>" id="<%=genre.id%>"><%=genre.name%></input>
+<%end%>
+    <div>
+  <input class="big_button clearfix" type="submit" name="edit" value="Edit">
 </form>
