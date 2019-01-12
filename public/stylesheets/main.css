@@ -84,6 +84,7 @@
   footer.branding {
     width:400px;
     margin:0 auto;
+    padding-top: 20px;
     text-align: center;
   }
 
@@ -98,6 +99,7 @@
 
   li {
   background: #fff;
+  font-size: 18px;
   color: #666;
   height: 40px;
   line-height: 40px; /*Aligns the text center horizontally*/
@@ -108,7 +110,9 @@ li:nth-child(2n) {
   background: #f7f7f7;
 }
 
-
+.checkbox {
+  
+}
 
   a {
     transition: color .4s;

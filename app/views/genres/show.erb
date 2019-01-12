@@ -1,6 +1,13 @@
 <h1>Books in the '<%=@genre.name%>' Category</h1>
+<div>
 <ul>
   <%@genre.books.each do |book|%>
     <li> <a href="/books/<%=book.id%>"><%=book.title%></a> by <%=book.author%></li>
   <%end%>
 </ul>
+</div>
+<div>
+ <form action="/books" method="get">
+  <input class="big_button" type="submit" value="View List">
+</form>
+</div>

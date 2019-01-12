@@ -4,18 +4,33 @@
 
 <h2> <%= @book.title%></h2>
 
-  <h4>Author: <%= @book.author %></h4>
-  <h4>Genre: <%= @book.genre.name %></h4>
+  <table id="table">
+  <tr>
+    <th>Title</th>
+    <th>Author</th>
+    <th>Genre</th>
+ 
+  </tr>
+  <tr>
+    <td><%= @book.title %></td>
+    <td><%= @book.author %></td>
+    <td><%= @book.genre.name %></td>
+    <td><form action="/books/<%=@book.id%>/edit" method="get">
+      <input  type="submit" value="Edit Book" >
+    </form></td>
 
+    <td><form action="/books/<%=@book.id%>/delete" method="post">
+      <input id="hidden" type="hidden" name="_method" value="delete">
+      <input  type="submit" value="Delete Book">
+    </form></td>
+  </tr>
+</table>
 
   <form action="/books" method="get">
   <input class="big_button" type="submit" value="View List">
 </form>
+<form action="/genres" method="get">
+  <input class="big_button" type="submit" value="View All Genres">
+</form>
 
-    <form method="post" action="/books/<%=@book.id%>/delete">
-      <input id="hidden" type="hidden" name="_method" value="DELETE">
-      <button type="submit" class="big_button" >Delete Book</button>
-    </form>
-     <form method="get" action="/books/<%=@book.id%>/edit">
-      <button type="submit" class="big_button" >Edit Book</button>
-    </form>
+    
