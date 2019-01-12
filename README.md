@@ -6,9 +6,11 @@ Book List is a simple CRUD, MVC Sinatra app that allows the user to add to a mas
 2. Log in to her account
 3. See an index of books added by all users
 4. View any book's info
-5. Edit the book's info only if she created the book
-6. Add new books to the index
-7. Delete a book only if she created the book
+5. View a list of Genres
+6. View a list of books within each Genre
+7. Edit the book's info only if she created the book
+8. Add new books to the index
+9. Delete a book only if she created the book
 
 
 ## Demo Link
