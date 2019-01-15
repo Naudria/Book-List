@@ -39,7 +39,7 @@ class BooksController < ApplicationController
    #CREATE ACTION - Use incoming form info to create new book
   post '/books' do
     if logged_in? && !params[:title].empty? && !params[:author].empty? && !params[:genre_id].nil?
-      @book = current_user.books.create(title: params[:title], author: params[:author], genre_id: params[:genre_id], user_id: params[:user_id])
+      @book = current_user.books.create(title: params[:title], author: params[:author], genre_id: params[:genre_id])
        flash[:message] = "Book has been added."
       redirect "/books"
      
@@ -67,7 +67,7 @@ class BooksController < ApplicationController
   patch '/books/:id' do
     if logged_in? 
         @book = Book.find(params[:id])
-        if !params[:title].empty? && !params[:author].empty? && !params[:genre_id].nil?
+        if !params[:title].empty? && !params[:author].empty? && !params[:genre_id].nil? && current_user.id == @book.user_id
         @book.update(title: params[:title], author: params[:author], genre_id: params[:genre_id])
         flash[:message] = "Your Book Has Been Succesfully Updated"
         redirect to '/books'

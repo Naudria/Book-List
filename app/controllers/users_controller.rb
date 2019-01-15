@@ -13,20 +13,18 @@ class UsersController < ApplicationController
   post '/signup' do
     if params.values.any?{|v| v.nil? || v.length == 0}
       redirect to "/signup"
-    else
-      if User.find_by(username: params[:username])
+    elsif User.find_by(username: params[:username])
         flash[:message] = "Username already taken."
         redirect to "/signup"
-      elsif User.find_by(email: params[:email])
+    elsif User.find_by(email: params[:email])
         flash[:message] = "Email already taken."
         redirect to "/signup"
-      else
+    else
         # When you submit the form above, this POSTS the information to the route /signup and creates new user
         user = User.create(username: params[:username], password: params[:password], email: params[:email])
         session[:user_id] = user.id
         redirect to "/login"
       end
-    end
   end
 
   get '/login' do
